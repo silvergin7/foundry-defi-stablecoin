@@ -1,66 +1,16 @@
-## Foundry
+# Decentralized Stablecoin
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+DSC is an overcollateralized stablecoin pegged to the US dollar. It is backed by WETH and WBTC. Chainlink price feeds set the USD value of that collateral. You can mint DSC only when your collateral covers the debt, and you can be liquidated if your position falls too low.
 
-Foundry consists of:
+## Contracts
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- `DecentralizedStableCoin` is the DSC token.
+- `DSCEngine` handles deposits, minting, burning, redemption, and liquidation.
+- `OracleLib` rejects stale Chainlink prices.
 
-## Documentation
+## Run the tests
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+forge test
+forge coverage
 ```

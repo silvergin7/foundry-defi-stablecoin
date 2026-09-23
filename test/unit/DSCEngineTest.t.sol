@@ -381,10 +381,9 @@ contract DSCEngineTest is Test {
     function testLiquidationPayoutIsCorrect() public liquidated {
         uint256 liquidatorWethBalance = ERC20Mock(weth).balanceOf(LIQUIDATOR);
         uint256 expectedWeth = dsce.getTokenAmountFromUsd(weth, AMOUNT_TO_MINT)
-            + (
-                dsce.getTokenAmountFromUsd(weth, AMOUNT_TO_MINT) * dsce.getLiquidationBonus()
-                    / dsce.getLiquidationPrecision()
-            );
+            + (dsce.getTokenAmountFromUsd(weth, AMOUNT_TO_MINT)
+                * dsce.getLiquidationBonus()
+                / dsce.getLiquidationPrecision());
         assertEq(liquidatorWethBalance, expectedWeth);
         assertEq(liquidatorWethBalance, 6_111_111_111_111_111_110);
     }
